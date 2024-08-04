@@ -1,37 +1,52 @@
-# User Guide for Snake Game
+# Input:
 
-## Requirements:
+Recreate a classic Snake game with a graphical user interface (GUI) using Python and the Tkinter library. The game should include the following features:
 
-Python 3.x
-Tkinter library (usually included with Python)
+# Gameplay:
+The game starts with a snake of length 3, moving in a rightward direction.
+The snake moves continuously within a square grid.
+Food appears randomly on the grid.
+The snake grows longer each time it consumes food.
+The game ends if the snake collides with the boundaries of the grid or itself.
 
-## How to Play:
+Controls:
+Arrow keys: Control the snake's direction (Up, Down, Left, Right).
+Spacebar: Toggle between Start and Pause.
 
-Launch the game: Run the Python script (snake_game.py).
-
-Start:
-Click the "Start" button to begin the game.
-Click the "Pause" button to pause the game.
-Press the Spacebar key to toggle between Start and Pause.
-Restart: Click the "Restart" button to reset the game.
-
-Control the Snake:
-Use the arrow keys (Up, Down, Left, Right) to change the snake's direction.
-Pressing any arrow key will also pause the Auto mode and give you control.
+GUI Features:
+Game Window: A square grid that displays the snake, food, and boundaries.
+Scoreboard: Displays the current score, updating in real-time.
+Buttons:
+Start/Pause: Starts/pauses the game. The button label dynamically changes to reflect the current state.
+Restart: Resets the game to its initial state.
+Auto: Activates automatic snake movement. Disables upon user intervention with arrow keys.
 
 Auto Mode:
-Click the "Auto" button to enable auto mode.
-The snake will move automatically, avoiding collisions as best as it can.
-Pressing any arrow key will disable auto mode and allow you to control the snake.
-Score: The scoreboard in the top-right corner displays your current score.
+The snake moves automatically, prioritizing directions that move it closer to the food.
+It avoids immediate collisions with the boundaries and itself by analyzing possible directions.
+If no clear path to the food exists, it chooses a random direction to avoid getting stuck.
 
-## Game Rules:
-The snake grows longer each time it eats food.
-The game ends if the snake hits the boundaries or itself.
+# User Guide:
+Requirements: Python 3.10 and the Tkinter library (usually included with Python).
 
-## Gameplay Tips:
-Plan your moves ahead to avoid getting trapped.
-Use auto mode to see how the AI plays.
-Try to beat your high score!
+To Play:
+Run the Python script.
+Click the "Start" button to begin or press any arrow key.
+Use the arrow keys to control the snake's direction.
+Press the Spacebar key to pause/unpause the game.
+Click the "Auto" button to enable automatic snake movement.
+Click the "Restart" button to start a new game.
 
-Code generated on gemma-1.5-pro-exp-0801 dated 03-Aug-2024
+Game Rules:
+The snake grows each time it eats food.
+The game ends if the snake collides with the boundaries or itself.
+
+# File Generation:
+
+Generate a single Python file named snake_game.py containing the complete code for the Snake game, incorporating all the specified features and functionality.
+
+User Guide:
+
+Include a concise user guide within a comment block at the end of the snake_game.py file. This guide should explain the game's controls, features, and basic rules, as outlined above.
+
+Ensure that the code is well-documented with comments explaining the purpose of each section and function.
