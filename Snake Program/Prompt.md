@@ -1,46 +1,37 @@
-# Input:
+# User Guide for Snake Game
 
-Create a Python 3.10 code project using the Tkinter library to create a graphical calculator application. The main features of this calculator include basic arithmetic operations, a user-friendly interface, and keyboard input functionality. Below are the specific details and requirements for the calculator application:
+## Requirements:
 
-## Main Requirements:
+Python 3.x
+Tkinter library (usually included with Python)
 
-User Interface:
-The calculator should have a display area and buttons for digits (0-9), operations (+, -, *, /), an equals button (=), and a clear button (C).
-The display area should be an entry widget where the calculation expression is shown and updated in real-time as users press buttons.
-The calculator should have a modern look using the 'clam' theme.
-The primary color for buttons should be teal (#008080) and the text color should be white (#FFFFFF).
-The font for the buttons should be Arial, size 15.
-The display area should have a font size of 18, field background color white, and text color teal.
+## How to Play:
 
-## Functional Requirements:
-The display area should show only the last 15 characters to prevent overflow.
-The calculator should support basic arithmetic operations: addition, subtraction, multiplication, and division.
-The equals button (=) should evaluate the current expression and display the result.
-The clear button (C) should reset the calculator, clearing the current expression and the display.
-If an error occurs during evaluation (e.g., division by zero), the display should show "Error".
+Launch the game: Run the Python script (snake_game.py).
 
-## Keyboard Input:
-The calculator should support key bindings for all buttons to allow users to input numbers and operations using the keyboard.
-The specific key bindings include:
-Digits: 0-9
-Operations: +, -, *, /
-Equals: Enter and =
-Clear: BackSpace, Delete, and Escape
+Start:
+Click the "Start" button to begin the game.
+Click the "Pause" button to pause the game.
+Press the Spacebar key to toggle between Start and Pause.
+Restart: Click the "Restart" button to reset the game.
 
-## Implementation Details:
-Use the ttk.Style class to configure the styles for buttons and the entry widget.
-Ensure that pressing any button updates the display and the current expression accordingly.
-Implement a function to evaluate the expression and handle potential errors.
-Bind the keyboard keys to their respective functions using the bind method.
+Control the Snake:
+Use the arrow keys (Up, Down, Left, Right) to change the snake's direction.
+Pressing any arrow key will also pause the Auto mode and give you control.
 
-Please review the provided information and ensure the application meets these requirements.
+Auto Mode:
+Click the "Auto" button to enable auto mode.
+The snake will move automatically, avoiding collisions as best as it can.
+Pressing any arrow key will disable auto mode and allow you to control the snake.
+Score: The scoreboard in the top-right corner displays your current score.
 
-# File Generation:
+## Game Rules:
+The snake grows longer each time it eats food.
+The game ends if the snake hits the boundaries or itself.
 
-Generate a single Python file named simple_calculator.py containing the complete code for the Calculator, incorporating all the specified features and functionality.
+## Gameplay Tips:
+Plan your moves ahead to avoid getting trapped.
+Use auto mode to see how the AI plays.
+Try to beat your high score!
 
-User Guide:
-
-Include a concise user guide within a comment block at the end of the simple_calculator.py file. This guide should explain the features and basic rules, as outlined above.
-
-Ensure that the code is well-documented with comments explaining the purpose of each section and function.
+Code generated on gemma-1.5-pro-exp-0801 dated 03-Aug-2024
