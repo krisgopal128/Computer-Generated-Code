@@ -1,6 +1,6 @@
 # Input:
 
-Create a Python 3.10 GUI 2048 game using the Tkinter library. Before writing the code, consider the following 40 yes/no questions to clarify the program's features:
+Create a Python 3.10 GUI 2048 game using the Tkinter library. Before writing the code, consider the following yes/no questions to clarify the program's features:
 
 **Game Mechanics:**
 
