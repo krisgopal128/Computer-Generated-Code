@@ -1,5 +1,3 @@
-## Create a Measurement Conversion Tool with Python and Tkinter
-
 **Input:**
 
 Develop a versatile measurement conversion tool with a user-friendly graphical user interface (GUI) using Python and the Tkinter library. The program should facilitate conversions across various measurement categories and units, providing a seamless experience for users.
