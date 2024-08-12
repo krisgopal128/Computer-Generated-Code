@@ -1,60 +1,51 @@
-Jigsaw Puzzle Game
+# User Guide for Jigsaw Puzzle Game
 
-This is a simple jigsaw puzzle game implemented in Python using the Tkinter library.
-Requirements
+## Requirements:
 
-    Python 3.x
+- Python 3.x
+- Tkinter library (usually included with Python)
+- Pillow library (`pip install Pillow`)
 
-    Tkinter library (usually included with Python)
+## How to Play:
 
-How to Play
+### Launch the Game:
+- Run the Python script (jigsaw_puzzle.py).
 
-    Run the jigsaw_puzzle.py script.
+### Load an Image:
+- Click the "Load Image" button to open a file dialog and select an image from your system.
+- The selected image will be resized and divided into puzzle pieces based on the selected difficulty level.
 
-    Click the "Load Image" button to select an image for the puzzle.
+### Set Difficulty:
+- Use the dropdown menu on the right to select the puzzle's difficulty level:
+  - **Easy**: 3x3 grid
+  - **Medium**: 4x4 grid (default)
+  - **Hard**: 5x5 grid
+- Changing the difficulty level will automatically reset and shuffle the puzzle.
 
-    Drag and drop the puzzle pieces to reassemble the image.
+### Shuffle & Reset:
+- Click the "Reset" button to shuffle the puzzle pieces and start over with the current image and difficulty level.
 
-    Pieces will snap to the nearest grid position when released.
+### Solve the Puzzle:
+- Drag and drop the puzzle pieces to arrange them correctly on the grid.
+- Pieces will snap into place when they are close to their correct positions.
+- The puzzle is complete when all pieces are correctly placed.
 
-    Click the "Check" button to see if you've completed the puzzle.
+### Check Completion:
+- Click the "Check" button to see if the puzzle is correctly solved.
+- If completed, a congratulatory message will appear.
 
-    Use the "Hint" button to toggle the display of piece numbers on the pieces.
+### Toggle Hints:
+- Click the "Hint On" button to display numbers on the puzzle pieces as a hint.
+- Click "Hint Off" to hide the hints.
 
-    Click the "Show" button to see the complete image or switch back to the puzzle.
+### Show/Hide Image:
+- Click the "Show Image" button to see the complete image without the puzzle pieces.
+- Click "Show Puzzle" to return to the puzzle view.
 
-    Select the difficulty level (Easy, Medium, Hard) from the dropdown menu to change the number of pieces.
-
-    Click the "Reset" button to reshuffle the pieces and start over.
-
-Controls
-
-    Load Image Button: Opens a file dialog to select an image.
-
-    Reset Button: Reshuffles the pieces and resets the puzzle.
-
-    Check Button: Checks if the puzzle is completed.
-
-    Hint Button: Toggles the display of hints (piece numbers) on the pieces.
-
-    Show Button: Toggles between showing the complete image and the puzzle pieces.
-
-    Difficulty Level Dropdown: Allows you to select the difficulty level (Easy, Medium, Hard).
-
-Difficulty Levels
-
-    Easy: 3x3 grid (9 pieces)
-
-    Medium: 4x4 grid (16 pieces)
-
-    Hard: 5x5 grid (25 pieces)
-
-Gameplay Tips
-
-    Start with an easier difficulty level if you're new to jigsaw puzzles.
-
-    Use the hint feature if you get stuck.
-
-    Try to identify patterns and piece shapes to help you assemble the puzzle faster.
+## Gameplay Tips:
+- Start with the Easy level to get familiar with the game.
+- Use the "Hint On" option if you're stuck.
+- Try to complete the puzzle on Hard difficulty for an extra challenge!
 
 Code generated on gemini-1.5-pro-exp-0801 & GPT‑4o dated 10-Aug-2024
+

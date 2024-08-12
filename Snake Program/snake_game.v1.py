@@ -16,8 +16,17 @@ class SnakeGame:
         self.canvas.pack()
 
         self.score = 0
+        self.highest_score = 0
+        self.restart_count = 0
+
         self.score_label = tk.Label(self.window, text="Score: 0", font=("Helvetica", 16))
         self.score_label.pack()
+
+        self.highest_score_label = tk.Label(self.window, text="Highest Score: 0", font=("Helvetica", 16))
+        self.highest_score_label.pack()
+
+        self.restart_count_label = tk.Label(self.window, text="Restarts: 0", font=("Helvetica", 16))
+        self.restart_count_label.pack()
 
         # Button Frame for Horizontal Placement
         button_frame = tk.Frame(self.window)
@@ -57,6 +66,10 @@ class SnakeGame:
             self.game_loop()
 
     def restart_game(self):
+        if self.score > self.highest_score:
+            self.highest_score = self.score
+            self.highest_score_label.config(text="Highest Score: {}".format(self.highest_score))
+
         self.game_over = False
         self.paused = True
         self.start_button.config(text="Start")
@@ -76,6 +89,9 @@ class SnakeGame:
             self.auto_button.config(bg="green")
         else:
             self.auto_button.config(bg="SystemButtonFace")  # Default button color
+            # Reset the restart count when auto mode is turned off
+            self.restart_count = 0
+            self.restart_count_label.config(text="Restarts: 0")
 
     def toggle_auto_restart(self):
         self.auto_restart = self.auto_restart_var.get()
@@ -150,44 +166,56 @@ class SnakeGame:
         head_x, head_y = self.snake[0]
         food_x, food_y = self.food
 
-        # Manhattan Distance Calculation
-        distances = {
-            "Up": abs(head_x - food_x) + abs((head_y - 1) - food_y),
-            "Down": abs(head_x - food_x) + abs((head_y + 1) - food_y),
-            "Left": abs((head_x - 1) - food_x) + abs(head_y - food_y),
-            "Right": abs((head_x + 1) - food_x) + abs(head_y - food_y)
-        }
+        # --- Rule-Based System ---
 
-        # Sort possible directions by closest Manhattan Distance to food
-        sorted_directions = sorted(distances, key=distances.get)
-
-        # Avoid immediate collisions
-        for direction in sorted_directions:
-            if direction == "Up" and (head_x, head_y - 1) not in self.snake and head_y - 1 >= 0:
-                self.direction = direction
-                break
-            elif direction == "Down" and (head_x, head_y + 1) not in self.snake and head_y + 1 < self.grid_size:
-                self.direction = direction
-                break
-            elif direction == "Left" and (head_x - 1, head_y) not in self.snake and head_x - 1 >= 0:
-                self.direction = direction
-                break
-            elif direction == "Right" and (head_x + 1, head_y) not in self.snake and head_x + 1 < self.grid_size:
-                self.direction = direction
-                break
-
-        # Hamiltonian Path Fallback
-        else:
-            # Define a simple Hamiltonian cycle as a fallback strategy
-            # For simplicity, this is a basic clockwise cycle around the grid
-            if head_y == 0 and head_x < self.grid_size - 1:
-                self.direction = "Right"
-            elif head_x == self.grid_size - 1 and head_y < self.grid_size - 1:
-                self.direction = "Down"
-            elif head_y == self.grid_size - 1 and head_x > 0:
-                self.direction = "Left"
-            elif head_x == 0 and head_y > 0:
+        # Rule: If food is to the left and body is on the left, try to turn right & around the body
+        if food_x < head_x and (head_x - 1, head_y) in self.snake:
+            if head_y > 0 and (head_x, head_y - 1) not in self.snake:  # Try to go up
                 self.direction = "Up"
+            elif head_y < self.grid_size - 1 and (head_x, head_y + 1) not in self.snake:  # Try to go down
+                self.direction = "Down"
+            # ... (Add more rules as needed)
+
+        # --- Manhattan Distance Heuristic with Collision Avoidance and Hamiltonian Path Fallback ---
+
+        else:  # If no rule-based decision is made
+            # 1. Manhattan Distance Calculation
+            distances = {
+                "Up": abs(head_x - food_x) + abs((head_y - 1) - food_y),
+                "Down": abs(head_x - food_x) + abs((head_y + 1) - food_y),
+                "Left": abs((head_x - 1) - food_x) + abs(head_y - food_y),
+                "Right": abs((head_x + 1) - food_x) + abs(head_y - food_y)
+            }
+
+            # 2. Sort Possible Directions by Closest Manhattan Distance
+            sorted_directions = sorted(distances, key=distances.get)
+
+            # 3. Avoid Immediate Collisions
+            for direction in sorted_directions:
+                if direction == "Up" and (head_x, head_y - 1) not in self.snake and head_y - 1 >= 0:
+                    self.direction = direction
+                    break
+                elif direction == "Down" and (head_x, head_y + 1) not in self.snake and head_y + 1 < self.grid_size:
+                    self.direction = direction
+                    break
+                elif direction == "Left" and (head_x - 1, head_y) not in self.snake and head_x - 1 >= 0:
+                    self.direction = direction
+                    break
+                elif direction == "Right" and (head_x + 1, head_y) not in self.snake and head_x + 1 < self.grid_size:
+                    self.direction = direction
+                    break
+
+            # 4. Hamiltonian Path Fallback (if no safe direction based on distance)
+            else:
+                # Define a simple Hamiltonian cycle as a fallback strategy
+                if head_y == 0 and head_x < self.grid_size - 1:
+                    self.direction = "Right"
+                elif head_x == self.grid_size - 1 and head_y < self.grid_size - 1:
+                    self.direction = "Down"
+                elif head_y == self.grid_size - 1 and head_x > 0:
+                    self.direction = "Left"
+                elif head_x == 0 and head_y > 0:
+                    self.direction = "Up"
 
     def game_loop(self):
         if not self.game_over and not self.paused:
@@ -198,6 +226,8 @@ class SnakeGame:
                 self.game_over = True
                 self.start_button.config(text="Game Over")
                 if self.auto_mode and self.auto_restart:
+                    self.restart_count += 1
+                    self.restart_count_label.config(text="Restarts: {}".format(self.restart_count))
                     self.restart_game()
                     self.start_game()
             else:
